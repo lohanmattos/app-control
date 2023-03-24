@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import ForbiddenError from "../errors/forbidden.error.models";
 import JWT from "jsonwebtoken";
+import { StatusCodes } from "http-status-codes";
 
 async function jwtAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
 
@@ -9,7 +10,7 @@ async function jwtAuthenticationMiddleware(req: Request, res: Response, next: Ne
         const authorizationHeader = req.headers['authorization'];
         //Verificando se não está vazio.
         if (!authorizationHeader) {
-            throw new ForbiddenError("Credencias não informadas.");
+            return res.status(StatusCodes.FORBIDDEN).json({Error: "Credencias não informadas"})
         }
 
         //Separada o conteudo em duas const
@@ -17,7 +18,7 @@ async function jwtAuthenticationMiddleware(req: Request, res: Response, next: Ne
 
         //Verifica o Tipo do Token
         if (authorizationType !== 'Bearer' || !token) {
-            throw new ForbiddenError("Tipo de autenticação invalida");
+            return res.status(StatusCodes.FORBIDDEN).json({Error: "Tipo de autenticação invalida"})       
         }
 
         try {
@@ -25,7 +26,7 @@ async function jwtAuthenticationMiddleware(req: Request, res: Response, next: Ne
             const tokenPayload = JWT.verify(token, "my_secret_key");
 
             if (typeof tokenPayload !== 'object' || !tokenPayload.sub) {
-                throw new ForbiddenError("Token invalido.")
+                return res.status(StatusCodes.FORBIDDEN).json({Error: "Token Inválido"})       
             }
 
             //uuid do usuario
@@ -39,7 +40,7 @@ async function jwtAuthenticationMiddleware(req: Request, res: Response, next: Ne
 
             next();
         } catch (error) {
-            throw new ForbiddenError("Token invalido.")
+            return res.status(StatusCodes.FORBIDDEN).json({Error: error})       
         }
 
     } catch (error) {
