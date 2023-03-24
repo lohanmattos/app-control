@@ -27,7 +27,7 @@ class authenticationController {
 
             //Verifica se o usuario existe
             if (!user) {
-                throw new ForbiddenError("Usuario não informado");
+                return res.status(StatusCodes.FORBIDDEN).json({Error: "Usuario não informado"}) 
             }
 
             //Conteudo do token
@@ -45,7 +45,7 @@ class authenticationController {
             res.status(StatusCodes.OK).json({ user, jwt });
 
         } catch (error) {
-            console.log(error);
+            return res.status(StatusCodes.FORBIDDEN).json({Error: error});
         }
 
     }

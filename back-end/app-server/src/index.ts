@@ -1,13 +1,14 @@
 import express from "express";
 import 'reflect-metadata';
 import { AppDataSource } from "./data-source";
+import jwtAuthenticationMiddleware from "./middlewares/jwt-authentication.middleware.ts ";
 import authorizationRoute from "./routes/authorization.route";
 //import basicAuthenticationMiddleware from "./middlewares/basic-authentication.middleware";
 //import authorizationRoute from "./routes/authorization.route";
 //import departamentoRoute from "./routes/departamento.route";
 //import empresaRoute from "./routes/empresa.route";
 import statusRoute from "./routes/status.route";
-import rotaUsuario from "./routes/user.route";
+import userRoute from "./routes/user.route";
 var cors = require('cors');
 
 //Configuração padrao
@@ -29,8 +30,7 @@ AppDataSource.initialize()
         //Configuração das rotas
         app.use(authorizationRoute);
         app.use(statusRoute);
-        app.use(rotaUsuario);
-
+        app.use(jwtAuthenticationMiddleware, userRoute);
 
         //app.use(basicAuthenticationMiddleware, empresaRoute);
         //app.use(departamentoRoute)

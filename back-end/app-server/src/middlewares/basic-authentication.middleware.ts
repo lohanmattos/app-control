@@ -1,5 +1,5 @@
-import console from "console";
 import { Request, Response, NextFunction } from "express";
+import { StatusCodes } from "http-status-codes";
 import DatabaseError from "../errors/dataBase.error.moldel";
 import ForbiddenError from "../errors/forbidden.error.models";
 import { userService } from "../services/user.service";
@@ -12,8 +12,8 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
 
          //Verifica se esta vazio. 
          if(!authorizationHeader){
-            throw new ForbiddenError("Credencias não informadas")
-         }
+            return res.status(StatusCodes.FORBIDDEN).json({Error: "Credencias não informadas"})
+        }
          
          //Cria a const com a informação do cabeçalho, mapeando type e token
          const [authorizationType, token] = authorizationHeader.split(' ');
@@ -21,7 +21,7 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
          //Verifica se o tipo do token é Basic 
          //e se o toke foi passado
          if (authorizationType !== 'Basic' || !token){
-            throw new ForbiddenError("Tipo de autenticação invalida");           
+            return res.status(StatusCodes.FORBIDDEN).json({Error: "Tipo de autenticação invalida"})       
          }
  
          //Decodifica o toke para utf8
@@ -31,7 +31,7 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
          
          //Verifica se os dados não foram passados
          if (!username || !password){
-             console.log("Credencias não preenchidas"); 
+            return res.status(StatusCodes.FORBIDDEN).json({Error: "Credencias não preenchidas"}) 
          }
 
          //Consulta se o username e password exitem no banco de dados.
@@ -40,7 +40,7 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
          });
 
         if(!user){
-            throw new DatabaseError("Usuario ou senha invalidos");       
+            return res.status(StatusCodes.FORBIDDEN).json({Error: "Usuario ou senha invalidos"}) 
         }
 
         //No interface Request nao existe essa const, vamos add
