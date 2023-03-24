@@ -7,10 +7,12 @@ import './style.css'
 
 const Login = () => {
 
+  //cria um useContext passando o authProvider
   const auth = useContext(AuthContext);
+  //cria um const navigate para utilizar o hook navigation
   const navigate = useNavigate();
 
-
+  //cria uma interface para os dados do formulario
   interface IFormInput {
     user: string;
     password: string
@@ -19,11 +21,13 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
 
   const onSubmit = async (data: IFormInput) => {
+
     if (data.user && data.password) {
+
       const isLogged = await auth.signin(data.user, data.password);
       if (isLogged) {
-        navigate('/');
-        alert("Autenticado com sucesso")
+        alert("Autenticado com sucesso");
+        navigate('/dashboard');
       } else {
         alert("Usuario ou Senha Invalidos");
       }
@@ -32,32 +36,44 @@ const Login = () => {
 
   return (
     <div>
-      <NavBar />
+      <div className="container margin-top">
+        {errors.user && <div className="alert alert-danger" role="alert">
+          Entre com o usuário.!
+        </div>}
 
-      <main className="container">
-        <h1>Sistema de Controle de Bens-Patrimoniais</h1>
-
-        {errors.user && <span style={{ color: 'red' }}>Entre com o usuário.</span>}
-        <br />
-        {errors.password && <span style={{ color: 'red' }}>Insira a senha.</span>}
+        {errors.password && <div className="alert alert-danger" role="alert">
+          Insira a senha.
+        </div>}
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          <label>Acesse com os dados abaixo</label>
+          <div className="mb-3 mt-3">
+            <label
+              className="form-label">Usuário</label>
+            <input
+              type={"text"}
+              className="form-control"
+              {...register("user", { required: true })}
+            />
+          </div>
 
-          <fieldset>
-            <legend>Dados de Acesso</legend>
+          <div className="mb-3 mt-3">
+            <label
+              className="form-label">Senha</label>
+            <input
+              type={"password"}
+              className="form-control"
+              {...register("password", { required: true })}
+            />
+          </div>
 
-            <label>Usuário</label>
-            <input {...register("user", { required: true })} />
-
-            <label>Senha</label>
-            <input {...register("password", { required: true })} />
-
-            <input type="submit" />
-          </fieldset>
-
-
+          <button
+            type="submit"
+            className="btn btn-primary">Acessar
+          </button>
         </form>
-      </main>
+
+      </div>
 
 
     </div>

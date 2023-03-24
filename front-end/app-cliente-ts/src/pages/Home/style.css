@@ -2,3 +2,11 @@ button{
     padding: 2px;
     margin-right: 5px;
 }   
+
+header{
+    text-align: center;
+}
+
+body{
+    background-color: black;
+}

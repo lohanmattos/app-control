@@ -9,23 +9,21 @@ const Home = () => {
     const auth = useContext(AuthContext);
 
     return (
-        <div>
-            <NavBar />
-
-            <main className="container">
+        <div className="container">
+            <header>
+                <div className="mt-4 p-5 bg-dark text-white rounded">
                 <h1>Sistema de Controle de Bens-Patrimoniais</h1>
-                <pre>Realize de maneira eficiente seu controle de bens patriomiais.</pre>
-                {
+                    <p>Realize de maneira eficiente seu controle de bens patriomiais.</p>
+
+                    {
                     !auth.user &&
                     <div>
-                        <h3>Faça Login para acessar o Sistema</h3>
-                        <Link to={'/login'}><button>Acessar</button></Link>
-                        <Link to={'/register'}><button>Cadastra-se</button></Link>
+                        <Link to={'/login'}><button className="btn btn-primary">Acessar</button></Link>
                     </div>
                 }
-
-            </main>
-
+                
+                </div>
+            </header>
         </div>
     )
 }

@@ -5,3 +5,11 @@ nav {
 nav a {
     margin-right: 5px;
 }
+
+nav img{
+    width: 40px;
+}
+
+.white{
+    color: aliceblue;
+}

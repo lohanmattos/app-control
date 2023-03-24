@@ -2,7 +2,7 @@ import axios from "axios";
 import { Buffer } from 'buffer';
 
 export const api = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: import.meta.env.VITE_REACT_APP_API
 })
 
 //codificar o token
@@ -29,17 +29,15 @@ export const useApi = () => ({
         const response = await api.post('/users', {
             username, password, email
         })
-
-        console.log(response.data)
         return response.data;
     },
 
     signin: async (username: string, password: string) => {
-
         try {
             const response = await api.post('/token', {
                 //data
-            }, {
+            }, 
+            {
                 headers: {
                     Authorization:
                         "Basic " +
