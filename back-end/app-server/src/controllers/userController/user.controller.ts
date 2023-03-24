@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
 import { StatusCodes } from "http-status-codes";
 import { userService } from "../../services/user.service";
+
+import 'dotenv/config'
 
 interface IUser {
     id: number
@@ -17,6 +20,9 @@ class userController {
         try {
             //Pega os dados vindo pela req
             const { username, password, email }: IUser = req.body;
+            
+            //Encliptar a senha do username
+            const passwordEnclipt = await bcrypt.hash(password, Number(process.env.KEY));
 
             //Verifica se o nome não esta vazio
             if (!username || username.length < 3) {
@@ -37,7 +43,7 @@ class userController {
                     //criar um novo usuario
                     const newUser = {
                         username: username,
-                        password: password,
+                        password: passwordEnclipt,
                         email: email,
                     }
 
@@ -48,7 +54,7 @@ class userController {
                     await userService.save(newUser);
 
                     //retorna o usuario criado
-                    res.status(StatusCodes.CREATED).json({OK: `Usuário ${newUser.username} criado com sucesso`});
+                    res.status(StatusCodes.CREATED).json(newUser);
                 }
             } else {
                 return res.status(StatusCodes.CONFLICT).json({ Erro: "Usuário já Existe." });

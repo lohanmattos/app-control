@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import DatabaseError from "../errors/dataBase.error.moldel";
 import ForbiddenError from "../errors/forbidden.error.models";
 import { userService } from "../services/user.service";
+import bcrypt from "bcrypt";
 
 async function basicAuthenticationMiddleware(req: Request, res: Response, next: NextFunction){
 
@@ -34,12 +35,15 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
             return res.status(StatusCodes.FORBIDDEN).json({Error: "Credencias não preenchidas"}) 
          }
 
-         //Consulta se o username e password exitem no banco de dados.
+         //Consulta se o username exitem no banco de dados.
          const user = await userService.findOne({
-            where: { username: username, password: password}
+            where: { username: username}
          });
 
-        if(!user){
+         //Compara a senha do user com a criptografia
+         const isPasswordValid = await bcrypt.compare(password, String(user?.password))
+
+        if(!isPasswordValid){
             return res.status(StatusCodes.FORBIDDEN).json({Error: "Usuario ou senha invalidos"}) 
         }
 

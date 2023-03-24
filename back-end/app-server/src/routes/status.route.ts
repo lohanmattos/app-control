@@ -4,8 +4,10 @@ import { StatusCodes } from "http-status-codes";
 
 const statusRoute = Router();
 
-statusRoute.get('/status', (req: Request, res: Response, next: NextFunction) => {
-    res.sendStatus(StatusCodes.OK);
+statusRoute.get('/', (req: Request, res: Response, next: NextFunction) => {
+    res.status(StatusCodes.OK).json({
+        statusRoute: "Aplicação OK."
+    });
 })
 
 export default statusRoute;
