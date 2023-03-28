@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import JWT, { SignOptions } from "jsonwebtoken";
-
-import ForbiddenError from "../../errors/forbidden.error.models";
 import { userService } from "../../services/user.service";
 
 interface IUser {

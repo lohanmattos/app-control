@@ -14,10 +14,11 @@ export class Employee{
     @Column()
     last_name:string
 
-    @Column()
+    @Column({unique: true})
     cpf: string
 
     @OneToOne(() => User, (user) => user.employee)
+    @JoinColumn()
     user: User
 
     @ManyToOne(() => Section, (section) => section.employee)

@@ -1,11 +1,13 @@
 import express from "express";
 import 'reflect-metadata';
+import bcrypt from "bcrypt";
 import { AppDataSource } from "./data-source";
 import jwtAuthenticationMiddleware from "./middlewares/jwt-authentication.middleware.ts ";
 import authorizationRoute from "./routes/authorization.route";
 import statusRoute from "./routes/status.route";
 import userRoute from "./routes/user.route";
 import { userService } from "./services/user.service";
+import employeeRoute from "./routes/employee.route";
 var cors = require('cors');
 
 //Configuração padrao
@@ -28,20 +30,26 @@ AppDataSource.initialize()
         app.use(authorizationRoute);
         app.use(statusRoute);
         app.use(jwtAuthenticationMiddleware, userRoute);
+        app.use(jwtAuthenticationMiddleware, employeeRoute)
 
         //Iniciar o servidor 
         app.listen(port, () => {
             console.log(`Servidor online: ${host}:${port}`)
         })
 
+        const password = "Root@2021"
+        const passwordEnclipt = await bcrypt.hash(password, Number(process.env.KEY));
+
         //Cria um User default do Sistema
         const userAdmin = {
             username: 'admin',
-            password: 'Root@2021',
+            password: passwordEnclipt,
             email: 'lohanamendola18@gmail.com',
         }
 
-        const isUserExist = await userService.findOneBy(userAdmin);
+        const isUserExist = await userService.findOneBy({
+            username: userAdmin.username
+        });
 
         if (!isUserExist) {
             const newUserAdmin = await userService.create(userAdmin);

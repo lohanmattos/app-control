@@ -5,5 +5,6 @@ const userRoute = Router();
 
 userRoute.get('/users', new userController().getUsers)
 userRoute.post('/users', new userController().createUser)
+userRoute.patch('/user/:id', new userController().updateUser)
 
 export default userRoute

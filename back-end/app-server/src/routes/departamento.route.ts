@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import departamentoControllers from "../controllers/DepartamentoController";
+import departamentoControllers from "../controllers/companyController/departamentController";
 
 const departamentoRoute = Router();
 

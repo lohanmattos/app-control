@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { StatusCodes } from "http-status-codes";
 import { userService } from "../../services/user.service";
-
 import 'dotenv/config'
+import { User } from "../../entities/user/user.entities";
 
 interface IUser {
     id: number
@@ -12,7 +12,6 @@ interface IUser {
     email: string
 }
 
-
 class userController {
     //---------------------------------------------------//
     async createUser(req: Request, res: Response) {
@@ -20,7 +19,7 @@ class userController {
         try {
             //Pega os dados vindo pela req
             const { username, password, email }: IUser = req.body;
-            
+
             //Encliptar a senha do username
             const passwordEnclipt = await bcrypt.hash(password, Number(process.env.KEY));
 
@@ -68,11 +67,50 @@ class userController {
     //-----------------------------------------------------//
     async getUsers(req: Request, res: Response) {
         //busca todos os usuarios no banco
-        const getAllUser = await userService.find()
+        const getAllUser = await userService.find({
+            relations: {
+                employee: true,
+            }
+        })
 
         //retorna os usuarios encontrados
         res.status(StatusCodes.OK).json(getAllUser);
     }
+    //-----------------------------------------------------//
+
+    async updateUser(req: Request, res: Response) {
+
+        try {
+            //pego o id do user pela url
+            const idUser = req.params.id;
+
+            //Pega os dados vindo pela req
+            const { password, email }: IUser = req.body;
+
+            //Encliptar a senha do username
+            const passwordEnclipt = await bcrypt.hash(password, Number(process.env.KEY));
+
+            const isUserExist = await userService.findOneBy({id: Number(idUser)})
+            
+            console.log(isUserExist)
+
+            if (isUserExist) {
+                const userEdit = await userService
+                    .createQueryBuilder()
+                    .update(User)
+                    .set({ password: passwordEnclipt, email: email })
+                    .where("id = :id", { id: idUser })
+                    .execute()
+
+                return res.status(StatusCodes.OK).json({ mesasagem: "Usuario editado com sucesso.", userEdit});
+            }
+            return res.status(StatusCodes.CONFLICT).json({ Error: "Usuario não existe" });
+
+        } catch (error) {
+            return res.status(StatusCodes.CONFLICT).json({ Error: error });
+        }
+    }
+
 
 }
 

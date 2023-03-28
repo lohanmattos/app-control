@@ -17,7 +17,6 @@ export class User{
     email:string
 
     @OneToOne(() => Employee, (employee) => employee.user)
-    @JoinColumn()
     employee: Employee
 
 }
