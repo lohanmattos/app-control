@@ -1,41 +1,50 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import { Department } from "../../entities/company/department.entities";
 import { companyService } from "../../services/company.service";
 
 
-interface IEmpresa{
-    nome: string,
-    descricao: string,
-    sigla: string
+interface ICompany{
+    name: string,
+    decription: string,
+    acronym: string,
+    departament: Department
+    company_createdAt: Date
 }
 
 class companyController{    
-    async criarEmpresa(req:Request, res:Response){
+    async createCompany(req:Request, res:Response){
 
-        const {nome, descricao, sigla}:IEmpresa = req.body;
+        const {name, decription, acronym, departament}:ICompany = req.body;
 
-        if(!nome){
+        if(!name){
             return res.status(StatusCodes.OK).json({erro: "O nome está vazio."});
         }
 
-        const novaEmpresa = {
-            nome: nome,
-            descricao: descricao,
-            sigla: sigla
+        const newCompany:ICompany = {
+            name: name,
+            decription: decription,
+            acronym: acronym,
+            departament: departament,
+            company_createdAt: new Date()
         }
 
-        //const criarEmpresa = companyService.create(novaEmpresa);
-        //await companyService.save(novaEmpresaa);
+        const createCompany = companyService.create(newCompany);
+        await companyService.save(createCompany);
 
     
-        //res.status(StatusCodes.OK).json(criarEmpresa);
+        res.status(StatusCodes.OK).json(createCompany);
     };
 
-    async listaEmpresa(req: Request, res: Response){
+    async findAllCompany(req: Request, res: Response){
 
-        const listarEmpresas = await companyService.find()
+        const findAllCompany = await companyService.find({
+            relations:{
+                department: true
+            }
+        })
 
-        res.status(StatusCodes.OK).json(listarEmpresas);
+        res.status(StatusCodes.OK).json(findAllCompany);
     }
 
 }

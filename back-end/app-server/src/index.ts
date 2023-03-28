@@ -8,6 +8,9 @@ import statusRoute from "./routes/status.route";
 import userRoute from "./routes/user.route";
 import { userService } from "./services/user.service";
 import employeeRoute from "./routes/employee.route";
+import companyRoute from "./routes/company.route";
+import departamentRoute from "./routes/department.route";
+import sectionRoute from "./routes/section.route";
 var cors = require('cors');
 
 //Configuração padrao
@@ -30,7 +33,10 @@ AppDataSource.initialize()
         app.use(authorizationRoute);
         app.use(statusRoute);
         app.use(jwtAuthenticationMiddleware, userRoute);
-        app.use(jwtAuthenticationMiddleware, employeeRoute)
+        app.use(jwtAuthenticationMiddleware, employeeRoute);
+        app.use(jwtAuthenticationMiddleware, companyRoute);
+        app.use(jwtAuthenticationMiddleware, departamentRoute);
+        app.use(jwtAuthenticationMiddleware, sectionRoute);
 
         //Iniciar o servidor 
         app.listen(port, () => {

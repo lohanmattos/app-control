@@ -17,9 +17,9 @@ export class Department{
     @ManyToOne(() => Company, (company) => company.department)
     company: Company
 
-    @OneToMany(() => Section, (section) => section.departament)
+    @OneToMany(() => Section, (section) => section.department)
     section: Section[]
 
-    //@CreateDateColumn({ type: 'timestamp'})
-    //departament_createdAt: Date
+    @CreateDateColumn({ type: 'timestamp'})
+    departament_createdAt: Date
 }

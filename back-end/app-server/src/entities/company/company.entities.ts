@@ -7,13 +7,13 @@ export class Company{
     @PrimaryGeneratedColumn('increment')
     id: number
 
-    @Column()
+    @Column({unique: true})
     name:string
 
     @Column()
     decription:string
     
-    @Column()
+    @Column({unique: true})
     acronym:string
 
     @OneToMany(() => Department, (department) => department.company)

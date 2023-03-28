@@ -29,13 +29,16 @@ class employeeController {
                 return res.status(StatusCodes.CONFLICT).json({ erro: "Número de CPF inválido" });
             }
 
+            const dataNow = new Date()
+
             //criar um novo usuario
             const newEmployee = {
                 first_name: first_name,
                 last_name: last_name,
                 cpf: cpf,
                 user: user,
-                section: section
+                section: section,
+                createdAt: new Date()
             }
 
             //envia o novo usuario para o service do usuario

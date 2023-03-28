@@ -65,16 +65,16 @@ class userController {
     };
 
     //-----------------------------------------------------//
-    async getUsers(req: Request, res: Response) {
+    async findAllUsers(req: Request, res: Response) {
         //busca todos os usuarios no banco
-        const getAllUser = await userService.find({
+        const findAllUsers = await userService.find({
             relations: {
                 employee: true,
             }
         })
 
         //retorna os usuarios encontrados
-        res.status(StatusCodes.OK).json(getAllUser);
+        res.status(StatusCodes.OK).json(findAllUsers);
     }
     //-----------------------------------------------------//
 
@@ -109,6 +109,22 @@ class userController {
         } catch (error) {
             return res.status(StatusCodes.CONFLICT).json({ Error: error });
         }
+    }
+
+    async findById(req: Request, res: Response){
+        try {
+             //pego o id do user pela url
+             const idUser = Number(req.params.id);
+
+             const results = await userService.findOneBy({id: idUser});
+            
+             return res.status(StatusCodes.OK).json(results);
+
+        } catch (error) {
+            console.error(error);
+        }
+
+   
     }
 
 

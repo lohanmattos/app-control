@@ -14,12 +14,12 @@ export class Section{
     @Column()
     acronym:string
 
-    @ManyToOne(() => Department, (departament) => departament.section)
-    departament: Department
+    @ManyToOne(() => Department, (department) => department.section)
+    department: Department
 
     @OneToMany(() => Employee, (employee) => employee.section)
     employee: Employee[]
 
-    //@CreateDateColumn({ type: 'timestamp'})
-    //section_createdAt: Date
+    @CreateDateColumn({ type: 'timestamp'})
+    section_createdAt: Date
 }
