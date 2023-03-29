@@ -1,6 +1,7 @@
 import {Entity , Column, ManyToOne, PrimaryGeneratedColumn, OneToMany, CreateDateColumn} from 'typeorm'
 import { Department } from '../company/department.entities'
 import { Employee } from '../company/employee.entities'
+import { Product } from '../product/product.entities'
 
 @Entity()
 export class Section{
@@ -19,6 +20,9 @@ export class Section{
 
     @OneToMany(() => Employee, (employee) => employee.section)
     employee: Employee[]
+
+    @OneToMany(() => Product, (product) => product.section )
+    product: Product
 
     @CreateDateColumn({ type: 'timestamp'})
     section_createdAt: Date

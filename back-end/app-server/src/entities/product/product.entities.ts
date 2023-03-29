@@ -1,4 +1,5 @@
 import {Entity , Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne} from 'typeorm'
+import { Section } from '../company/section.entities'
 import { Category } from '../product/category.entites'
 
 @Entity()
@@ -18,6 +19,9 @@ export class Product{
 
     @Column()
     price: number
+
+    @ManyToOne(() => Section, (section) => section.product)
+    section: Section
 
     @ManyToOne(() => Category, (category) => category.product )
     product_category: Category

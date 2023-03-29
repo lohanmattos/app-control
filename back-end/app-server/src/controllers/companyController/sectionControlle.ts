@@ -42,11 +42,7 @@ class sectionController {
     }
 
     async findAllSections(req: Request, res: Response) {
-        const findAllSections = await sectionService.find({
-            relations: {
-                employee: true,
-            }
-        })
+        const findAllSections = await sectionService.find({})
 
         //retorna os usuarios encontrados
         res.status(StatusCodes.OK).json(findAllSections);
