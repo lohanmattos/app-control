@@ -11,6 +11,8 @@ import employeeRoute from "./routes/employee.route";
 import companyRoute from "./routes/company.route";
 import departamentRoute from "./routes/department.route";
 import sectionRoute from "./routes/section.route";
+import checkProductRoute from "./routes/checkProduct.route";
+import productRoute from "./routes/product.route";
 var cors = require('cors');
 
 //Configuração padrao
@@ -32,6 +34,9 @@ AppDataSource.initialize()
         //Configuração das rotas
         app.use(authorizationRoute);
         app.use(statusRoute);
+        app.use(checkProductRoute);
+        app.use(productRoute);
+
         app.use(jwtAuthenticationMiddleware, userRoute);
         app.use(jwtAuthenticationMiddleware, employeeRoute);
         app.use(jwtAuthenticationMiddleware, companyRoute);
