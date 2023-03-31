@@ -5,10 +5,15 @@ export class checkProductController {
 
     async findAllCheckedProduct(req: Request, res: Response){
         const result = await checkProductService.find({
-            relations: {
-                productCode: true,
-                section: true,
-                user: true,
+            relations:{
+                productCode:true,
+                section: {
+                    department: true,
+                },
+                user: {
+                    employee: true
+                }
+            
             }
         })
 

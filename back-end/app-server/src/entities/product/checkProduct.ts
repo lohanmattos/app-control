@@ -9,7 +9,6 @@ export class checkProduct{
     @PrimaryGeneratedColumn('increment')
     id: number
 
-    //@OneToMany(() => Product, (product) => product.checkProduct )
     @ManyToOne(() => Product, (product) => product.checkProduct  )
     productCode: Product[]
 
@@ -19,10 +18,7 @@ export class checkProduct{
     @ManyToOne(() => User, (user) => user.checkProduct  )
     user: User
 
-    //@CreateDateColumn({ type: 'timestamp'})
-    //checkProduct_createdAt: Date
-
-    //@UpdateDateColumn({ type: 'timestamp'})
-    //checkProduct_updatedAt: Date
+    @CreateDateColumn({ type: 'timestamp'})
+    checkProduct_createdAt: Date
 
 }
