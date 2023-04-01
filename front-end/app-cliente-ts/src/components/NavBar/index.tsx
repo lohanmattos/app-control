@@ -24,10 +24,10 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="mynavbar">
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item">
-                                <Link to={'/empresa'} className="nav-link">Empresa</Link>
+                                <Link to={'/company'} className="nav-link">Empresa</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={'/controle'}>Controle Material</Link>
+                                <Link className="nav-link" to={'/control-material'}>Controle Material</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to={'/users'}>Usuários</Link>
@@ -40,7 +40,7 @@ const NavBar = () => {
                                         <img src={Perfil} alt="Avatar Logo" className="rounded-pill" />
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={'/perfil-user'} className="nav-link">{auth.user?.username}</Link>
+                                        <Link to={'/user-perfil'} className="nav-link">{auth.user?.username}</Link>
 
                                     </li>
                                     <li className="nav-item">

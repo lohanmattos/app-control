@@ -14,8 +14,9 @@ const AuthProvider = ({children}: {children: JSX.Element}) => {
             const storageData = localStorage.getItem('authToken');
             if(storageData){
                 const data = await api.validateToken(storageData);
-                if(data.user){
-                    setUser(data.user);
+                console.log(data.isToken)
+                if(data.isToken){
+                    setUser(data.isToken);
                 }
             }
         }
@@ -29,7 +30,7 @@ const AuthProvider = ({children}: {children: JSX.Element}) => {
             if(data.user && data.jwt){
                 setUser(data.user);
                 setTokenLocalStore(data.jwt);  
-                setToken(data.token);      
+                setToken(data.jwt);      
                     
                 return true;
             }

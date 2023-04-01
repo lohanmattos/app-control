@@ -1,0 +1,16 @@
+.card{
+    width: 18rem;
+}
+.span-bold{
+    font-weight: 700;
+}
+
+.container-fluid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.altura {
+    height: 80vh;
+}

@@ -6,6 +6,10 @@ import Login from "../Login";
 import Page404 from "../Page404";
 import Register from "../Register";
 import './App.css'
+import UserPerfil from "../UserPerfil";
+import Users from "../Users";
+import Company from "../Company";
+import ControlMaterial from "../ControlMaterial";
 
 function App() {
   return (
@@ -14,6 +18,10 @@ function App() {
       <Route path="/login" element={<RequireAuth><Login /></RequireAuth>}></Route>
       <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>}></Route>
       <Route path="/register" element={<Register />}></Route >
+      <Route path="/user-perfil" element={<UserPerfil />}></Route>
+      <Route path="/users" element={<Users />}></Route>
+      <Route path="/company" element={<Company />}></Route>
+      <Route path="/control-material" element={<ControlMaterial />}></Route>
       <Route path="*" element={<Page404 />}></Route>
     </Routes>
   )
