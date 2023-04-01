@@ -7,6 +7,7 @@ const AuthProvider = ({children}: {children: JSX.Element}) => {
     
     const api = useApi()
     const [user, setUser] = useState<User | null>(null);
+    const [token, setToken] = useState<string | null>()
 
     useEffect(() => {
         const validateToken = async () => {
@@ -27,7 +28,8 @@ const AuthProvider = ({children}: {children: JSX.Element}) => {
         try {
             if(data.user && data.jwt){
                 setUser(data.user);
-                setToken(data.jwt);        
+                setTokenLocalStore(data.jwt);  
+                setToken(data.token);      
                     
                 return true;
             }
@@ -54,15 +56,15 @@ const AuthProvider = ({children}: {children: JSX.Element}) => {
 
     const signout = async () =>{
         setUser(null);
-        removeToken();
+        removeTokenLocalStore();
         //await api.signout();
     }
 
-    const setToken = (token:string) =>{
+    const setTokenLocalStore = (token:string) =>{
         localStorage.setItem('authToken', token);
     }
 
-    const removeToken = () =>{
+    const removeTokenLocalStore = () =>{
         localStorage.removeItem('authToken');
     }
 

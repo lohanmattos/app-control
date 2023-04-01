@@ -11,7 +11,6 @@ const NavBar = () => {
     const handleLogout = async () => {
         await auth.signout()
         nav('/')
-        //window.location.href = window.location.href;
     }
 
     return (
@@ -25,22 +24,31 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="mynavbar">
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="javascript:void(0)">Empresa</a>
+                                <Link to={'/empresa'} className="nav-link">Empresa</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="javascript:void(0)">Controle Material</a>
+                                <Link className="nav-link" to={'/controle'}>Controle Material</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/users'}>Usuários</Link>
                             </li>
                         </ul>
-                        <div className="d-flex">
-                            <ul className="navbar-nav me-auto">
-                                <li className="nav-item">
-                                    <img src={Perfil} alt="Avatar Logo" className="rounded-pill" />
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="javascript:void(0)">{auth.user?.username}</a>
-                                </li>
-                            </ul>
-                        </div>
+                        {
+                            auth.user && <div className="d-flex">
+                                <ul className="navbar-nav me-auto">
+                                    <li className="nav-item">
+                                        <img src={Perfil} alt="Avatar Logo" className="rounded-pill" />
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={'/perfil-user'} className="nav-link">{auth.user?.username}</Link>
+
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={''} className="nav-link" onClick={handleLogout}>Sair</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
                     </div>
                 </div>
             </nav>

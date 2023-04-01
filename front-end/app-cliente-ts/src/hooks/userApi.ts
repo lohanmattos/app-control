@@ -12,7 +12,6 @@ function toBase64(data: string): string {
 
 export const useApi = () => ({
     validateToken: async (token: string) => {
-
         const response = await api.post('/token/validate', {
             //data
         },
@@ -55,7 +54,7 @@ export const useApi = () => ({
     signout: async () => {
         //const response = await api.post('/logout')       
         return true
-    }
+    },
 
 })
 
