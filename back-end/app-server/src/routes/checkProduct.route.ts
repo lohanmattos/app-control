@@ -5,6 +5,6 @@ import { checkProductController } from "../controllers/product/ckeckProductContr
 const checkProductRoute = Router();
 
 checkProductRoute.get('/check-product',new checkProductController().findAllCheckedProduct)
-//checkProductRoute.post('/company',new empresaControllers().createCompany)
+checkProductRoute.post('/check-product',new checkProductController().createCheckProduct)
 
 export default checkProductRoute
