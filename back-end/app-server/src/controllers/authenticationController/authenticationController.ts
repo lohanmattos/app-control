@@ -42,6 +42,8 @@ class authenticationController {
             //return o token 
             res.status(StatusCodes.OK).json({ user, jwt });
 
+
+
         } catch (error) {
             return res.status(StatusCodes.FORBIDDEN).json({Error: error});
         }
@@ -53,11 +55,15 @@ class authenticationController {
 
         //Verifica se o token ja existe
         const isToken = await userService.findOne({
-            where: {id: user.id}
+            where: {id: user.id}, relations:{
+                employee:{
+                    section: true
+                }
+            }
         }); 
 
         //const finlUser = await tokenService.findBy({user: req.user})
-        res.status(StatusCodes.OK).json({ user });
+        res.status(StatusCodes.OK).json({ isToken });
     }
 
 }

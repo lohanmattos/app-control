@@ -10,7 +10,7 @@ export class checkProduct{
     id: number
 
     @ManyToOne(() => Product, (product) => product.checkProduct  )
-    productCode: Product[]
+    productCode: Product
 
     @ManyToOne(() => Section, (section) => section.checkProduct  )
     section: Section

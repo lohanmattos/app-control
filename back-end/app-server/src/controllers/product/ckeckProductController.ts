@@ -6,12 +6,15 @@ import { User } from "../../entities/user/user.entities";
 import { productService } from "../../services/product.service";
 import { sectionService } from "../../services/section.service";
 import { userService } from "../../services/user.service";
+import { checkProduct } from "../../entities/product/checkProduct";
+import { StatusCodes } from "http-status-codes";
 
 
 interface ICheckProduct{
-    productCode: string,
-    section: number,
-    user: number
+    productCode: Product,
+    section: Section,
+    user: User,
+    checkProduct_createdAt: Date
 }
 
 export class checkProductController {
@@ -38,25 +41,35 @@ export class checkProductController {
         try {
             const {productCode, section, user }:ICheckProduct = req.body
 
-            const isProductExist = await productService.findBy({code: productCode})
-            const isSectionExist = await sectionService.findBy({id: section})
-            const isUserExist = await userService.findBy({id: user})
+            const findProductId = await productService.findBy({code: String(productCode)})
+            const isSectionExist = await sectionService.findBy({id: Number(section)})
+            const isUserExist = await userService.findBy({id: Number(user)})
 
 
-            if(isProductExist.length > 0){
+            if(isSectionExist.length == 0){
+                return res.status(StatusCodes.NOT_FOUND).json({erro:"Seção não existe"})
+            }
 
-                const newCheckProduct:ICheckProduct ={
-                    productCode: productCode,
+            if(isUserExist.length == 0){
+                return res.status(StatusCodes.NOT_FOUND).json({erro:"Usuario inválido não existe"})
+            }
+        
+            if(findProductId.length > 0){
+
+                const newCheckProduct ={
+                    productCode: findProductId[0],
                     section: section,
-                    user:user
+                    user:user,
+                    checkProduct_createdAt: new Date()
                 }
 
                 const createCheckProduct = await checkProductService.create(newCheckProduct)
                 await checkProductService.save(newCheckProduct);
 
-                return res.status(200).json(newCheckProduct)
+                return res.status(StatusCodes.CREATED).json(createCheckProduct);
+
             }else{
-                return res.status(200).json({erro:"Produto não existe"})
+                return res.status(StatusCodes.NOT_FOUND).json({erro:"Produto não existe"})
             }
            
         } catch (error) {

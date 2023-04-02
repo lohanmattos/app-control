@@ -34,15 +34,16 @@ AppDataSource.initialize()
         //Configuração das rotas
         app.use(authorizationRoute);
         app.use(statusRoute);
-        app.use(checkProductRoute);
-        app.use(productRoute);
 
         app.use(jwtAuthenticationMiddleware, userRoute);
         app.use(jwtAuthenticationMiddleware, employeeRoute);
         app.use(jwtAuthenticationMiddleware, companyRoute);
         app.use(jwtAuthenticationMiddleware, departamentRoute);
         app.use(jwtAuthenticationMiddleware, sectionRoute);
+        app.use(jwtAuthenticationMiddleware,checkProductRoute);
+        app.use(jwtAuthenticationMiddleware,productRoute);
 
+        
         //Iniciar o servidor 
         app.listen(port, () => {
             console.log(`Servidor online: ${host}:${port}`)

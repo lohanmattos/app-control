@@ -37,7 +37,9 @@ async function basicAuthenticationMiddleware(req: Request, res: Response, next: 
 
          //Consulta se o username exitem no banco de dados.
          const user = await userService.findOne({
-            where: { username: username}
+            where: { username: username}, relations:{
+                employee:true
+            }
          });
 
          //Compara a senha do user com a criptografia
