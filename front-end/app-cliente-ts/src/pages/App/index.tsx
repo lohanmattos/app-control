@@ -8,7 +8,7 @@ import Register from "../Register";
 import './App.css'
 import UserPerfil from "../UserPerfil";
 import Users from "../Users";
-import Company from "../Company";
+import PageCompany from "../Company";
 import ControlMaterial from "../ControlMaterial";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       <Route path="/register" element={<Register />}></Route >
       <Route path="/user-perfil" element={<UserPerfil />}></Route>
       <Route path="/users" element={<Users />}></Route>
-      <Route path="/company" element={<Company />}></Route>
+      <Route path="/company" element={<PageCompany />}></Route>
       <Route path="/control-material" element={<ControlMaterial />}></Route>
       <Route path="*" element={<Page404 />}></Route>
     </Routes>

@@ -14,7 +14,6 @@ const AuthProvider = ({children}: {children: JSX.Element}) => {
             const storageData = localStorage.getItem('authToken');
             if(storageData){
                 const data = await api.validateToken(storageData);
-                console.log(data.isToken)
                 if(data.isToken){
                     setUser(data.isToken);
                 }

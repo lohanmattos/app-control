@@ -1,8 +1,9 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import AuthContext from "../../contexts/Auth/AuthContext"
 import "./style.css"
 import Perfil from "../../assets/img/perfil.png"
+import { Employee } from "../../types/Employee"
 const NavBar = () => {
 
     const auth = useContext(AuthContext);
@@ -12,6 +13,13 @@ const NavBar = () => {
         await auth.signout()
         nav('/')
     }
+
+    const [user, setUser] = useState<Employee>()
+    
+    useEffect(() => {
+        setUser(auth.user?.employee)
+    },[auth.user])
+
 
     return (
         <>
@@ -40,7 +48,7 @@ const NavBar = () => {
                                         <img src={Perfil} alt="Avatar Logo" className="rounded-pill" />
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={'/user-perfil'} className="nav-link">{auth.user?.username}</Link>
+                                        <Link to={'/user-perfil'} className="nav-link">{user?.first_name}</Link>
 
                                     </li>
                                     <li className="nav-item">

@@ -35,15 +35,15 @@ export const useApi = () => ({
         try {
             const response = await api.post('/token', {
                 //data
-            }, 
-            {
-                headers: {
-                    Authorization:
-                        "Basic " +
-                        toBase64(`${username}:${password}`),
-                    "content-type": "application/json"
-                },
-            }
+            },
+                {
+                    headers: {
+                        Authorization:
+                            "Basic " +
+                            toBase64(`${username}:${password}`),
+                        "content-type": "application/json"
+                    },
+                }
             )
             return response.data
         } catch (error) {
@@ -55,6 +55,21 @@ export const useApi = () => ({
         //const response = await api.post('/logout')       
         return true
     },
+
+    findAllCompany: async () => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.get('/company', {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    }
 
 })
 
