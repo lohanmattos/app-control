@@ -18,3 +18,18 @@ export type Company = {
     acronym: string,
     departments: Departments[]
 }
+
+export type Category = {
+    id: number, 
+    name: string
+}
+
+export type Product = {
+    id: number,
+    code: string,
+    name: string,
+    description: string,
+    price: number,
+    section: Section,
+    product_category: Category
+}

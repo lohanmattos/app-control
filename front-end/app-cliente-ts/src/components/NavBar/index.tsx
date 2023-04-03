@@ -40,6 +40,9 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to={'/users'}>Usuários</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={'/products'}>Produtos</Link>
+                            </li>
                         </ul>
                         {
                             auth.user && <div className="d-flex">
