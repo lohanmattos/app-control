@@ -14,4 +14,16 @@ export class productController {
 
         return res.status(200).json(result)
     }
+
+    async findProduct(req: Request, res: Response){
+        const result = await productService.find({
+            relations: {
+                section: true,
+                product_category: true,
+                checkProduct: true,
+            }
+        })
+
+        return res.status(200).json(result)
+    }
 }
