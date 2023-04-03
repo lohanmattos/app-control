@@ -12,6 +12,7 @@ import PageCompany from "../Company";
 import ControlMaterial from "../ControlMaterial";
 import Products from "../Products";
 import Product from "../Products/Product";
+import ProductPerfil from "../Products/Product";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <Route path="/company" element={<PageCompany />}></Route>
       <Route path="/control-material" element={<ControlMaterial />}></Route>
       <Route path="/products" element={<Products />}></Route>
-      <Route path="/product/view/:id?" element={<Product />}></Route>
+      <Route path="/product/view/:id?" element={<ProductPerfil />}></Route>
       <Route path="*" element={<Page404 />}></Route>
     </Routes>
   )

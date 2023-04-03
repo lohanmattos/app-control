@@ -85,6 +85,22 @@ export const useApi = () => ({
         } catch (error) {
             return error
         }
+    },
+
+    findProduct: async (id:number) => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.get('/product/'+id, {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+            
+        } catch (error) {
+            return error
+        }
     }
 
 })
