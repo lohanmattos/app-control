@@ -40,8 +40,8 @@ AppDataSource.initialize()
         app.use(jwtAuthenticationMiddleware, companyRoute);
         app.use(jwtAuthenticationMiddleware, departamentRoute);
         app.use(jwtAuthenticationMiddleware, sectionRoute);
-        app.use(jwtAuthenticationMiddleware,checkProductRoute);
-        app.use(jwtAuthenticationMiddleware,productRoute);
+        app.use(jwtAuthenticationMiddleware, checkProductRoute);
+        app.use(jwtAuthenticationMiddleware, productRoute);
 
         
         //Iniciar o servidor 

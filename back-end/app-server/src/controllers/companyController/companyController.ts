@@ -12,6 +12,7 @@ interface ICompany{
     company_createdAt: Date
 }
 
+
 class companyController{    
     async createCompany(req:Request, res:Response){
 
@@ -37,7 +38,7 @@ class companyController{
     };
 
     async findAllCompany(req: Request, res: Response){
-
+        
         const findAllCompany = await companyService.find({
             relations:{
                 department: true
