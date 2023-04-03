@@ -7,7 +7,7 @@ import {Employee} from "../../types/Employee"
 const UserPerfil = () => {
     const auth = useContext(AuthContext);
 
-    const [user, setUser] = useState<Employee>()
+    const [user, setUser] = useState<Employee | undefined>()
     
     useEffect(() => {
         setUser(auth.user?.employee)
