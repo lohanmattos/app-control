@@ -5,10 +5,8 @@ export class productController {
 
     async findAllProduct(req: Request, res: Response){
         const result = await productService.find({
-            relations: {
-                section: true,
-                product_category: true,
-                checkProduct: true,
+            relations:{
+                section:true
             }
         })
 
@@ -16,13 +14,15 @@ export class productController {
     }
 
     async findProduct(req: Request, res: Response){
-        const result = await productService.find({
-            relations: {
-                section: true,
-                product_category: true,
-                checkProduct: true,
-            }
-        })
+        
+        const id = req.params.id
+
+        const result = await productService.find({where: {id: Number(id)}, relations:
+    {
+        section: true,
+        product_category: true,
+        checkProduct: true,
+    }})
 
         return res.status(200).json(result)
     }
