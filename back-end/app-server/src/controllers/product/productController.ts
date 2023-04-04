@@ -21,7 +21,12 @@ export class productController {
     {
         section: true,
         product_category: true,
-        checkProduct: true,
+        checkProduct: {
+            section: true,
+            user:{
+                employee: true
+            }
+        },
     }})
 
         return res.status(200).json(result)
