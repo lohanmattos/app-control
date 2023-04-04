@@ -32,8 +32,15 @@ const ProductPerfil = () => {
         <div>
             <NavBar />
             <div className="container">
-                <h3>{data[0]?.name}</h3>
-               
+                <h3 className="mt-4">Detalhes do Produto</h3>
+
+                <div className="row mb-3">
+                    <div className="col-sm-2 themed-grid-col">Código Produto: <b>{data[0]?.code}</b></div>
+                    <div className="col-sm-4 themed-grid-col">Nome: <b>{data[0]?.name}</b></div>
+                    <div className="col-sm-4 themed-grid-col">Descrição: <b>{data[0]?.description}</b></div>
+                    <div className="col-sm-2 themed-grid-col">Valor: R$ <b>{data[0]?.price}</b></div>
+                </div>
+
                 <h3>Lista de Conferencias</h3>
 
                 <table className='table table-hover' >
@@ -47,13 +54,13 @@ const ProductPerfil = () => {
                     <tbody>
                         {
                             listCheck.map((item) => {
-                                return(
+                                return (
                                     <tr>
-                                    <td>{item.checkProduct_createdAt}</td>
-                                    <td>{item.section.name}</td>
-                                    <td>{item.user.employee.first_name}</td>
-                            
-                                </tr>
+                                        <td>{item.checkProduct_createdAt}</td>
+                                        <td>{item.section.name}</td>
+                                        <td>{item.user.employee.first_name}</td>
+
+                                    </tr>
                                 )
                             })
                         }
