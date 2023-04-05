@@ -17,7 +17,7 @@ import ProductPerfil from "../Products/Product";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />}></Route>
+      <Route path="/" element={<RequireAuth><Home /></RequireAuth>}></Route>
       <Route path="/login" element={<RequireAuth><Login /></RequireAuth>}></Route>
       <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>}></Route>
       <Route path="/register" element={<Register />}></Route >

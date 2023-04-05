@@ -30,7 +30,7 @@ const PageCompany = () => {
                 <NavBar />
             </div>
             <div className="container">
-                <h1>Empresas</h1>
+                <h1 className="mt-4">Empresas</h1>
 
                 <table className='table table-hover' >
                     <thead>

@@ -11,21 +11,13 @@ const Home = () => {
     return (
 
         <div>
-            <NavBar/>
-            <div className="container">
-            <h1>Sistema de Controle de Bens-Patrimoniais</h1>
-            <p>Realize de maneira eficiente seu controle de bens patriomiais.</p>
-
-            {
-                !auth.user &&
-                <div>
-                    <Link to={'/login'}><button className="btn btn-primary">Acessar</button></Link>
-                </div>
-            }
-
+            <NavBar />
+            <div className="container px-4 py-5" id="hanging-icons">
+                <h1 className="pb-2 ">Sistema de Controle de Bens-Patrimoniais</h1>
+                
+            </div>
         </div>
-        </div>
-        
+
     )
 }
 

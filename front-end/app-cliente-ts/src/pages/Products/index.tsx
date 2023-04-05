@@ -24,7 +24,7 @@ const Products = () => {
         <div>
             <NavBar />
             <div className="container">
-                <h1>Produtos</h1>
+                <h1 className="mt-4">Produtos</h1>
 
                 <table className='table table-hover' >
                     <thead>

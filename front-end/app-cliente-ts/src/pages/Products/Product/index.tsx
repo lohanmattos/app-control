@@ -35,7 +35,7 @@ const ProductPerfil = () => {
             <NavBar />
             <div className="container">
                 <div className="container-detalhe">
-                    <h3 className="mt-4">Detalhes do Produto</h3>
+                    <h1 className="mt-4 border-bottom" >Detalhes do Produto</h1>
 
                     <div className="row mb-3">
                         <div className="col-sm-3 themed-grid-col">Código Produto: <b>{data[0]?.code}</b></div>
@@ -51,9 +51,9 @@ const ProductPerfil = () => {
                     </div>
                 </div>
 
+                <div className="b-example-divider"></div>
 
-
-                <h3>Lista de Conferencias</h3>
+                <h4 className="mt-4" >Lista de Conferencias</h4>
 
                 <table className='table table-hover' >
                     <thead>
