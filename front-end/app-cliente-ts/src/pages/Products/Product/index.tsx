@@ -1,14 +1,18 @@
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { Link, Route, Routes, useParams, useNavigate } from "react-router-dom";
 import { useApi } from "../../../hooks/userApi";
 import { useEffect, useState } from "react";
 import { CheckProduct, Product } from "../../../types/Company";
 import NavBar from "../../../components/NavBar";
 import { formatLocalDate } from ".././../../utils/format";
 import "./style.css"
+import TicketProduct from "../../../components/TicketProduct";
 
 const ProductPerfil = () => {
 
     const { id } = useParams();
+
+    //cria um const navigate para utilizar o hook navigation
+    const navigate = useNavigate();
 
     const api = useApi();
 
@@ -27,8 +31,9 @@ const ProductPerfil = () => {
         findProduct()
     }, [])
 
-
-    console.log(listCheck)
+    const emitTicket = () => {
+        navigate('/emit-ticket')
+    }
 
     return (
         <div>
@@ -51,7 +56,11 @@ const ProductPerfil = () => {
                     </div>
                 </div>
 
-                <div className="b-example-divider"></div>
+                <div className="row mb-3">
+                    <div className="col-sm-4 themed-grid-col"><button type="button" onClick={() => emitTicket()} className="btn btn-primary">Gerar Etiqueta</button></div>
+                    <div className="col-sm-4 themed-grid-col"></div>
+                    <div className="col-sm-4 themed-grid-col"></div>
+                </div>
 
                 <h4 className="mt-4" >Lista de Conferencias</h4>
 
@@ -68,7 +77,7 @@ const ProductPerfil = () => {
                             listCheck.map((item) => {
                                 return (
                                     <tr>
-                                        <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy") }</td>
+                                        <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy")}</td>
                                         <td>{item.section.name}</td>
                                         <td>{item.user.employee.first_name}</td>
 
@@ -79,6 +88,7 @@ const ProductPerfil = () => {
                     </tbody>
                 </table>
 
+                        <TicketProduct/>
             </div>
         </div>
     )

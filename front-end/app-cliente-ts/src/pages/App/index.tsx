@@ -13,6 +13,7 @@ import ControlMaterial from "../ControlMaterial";
 import Products from "../Products";
 import Product from "../Products/Product";
 import ProductPerfil from "../Products/Product";
+import Ticke from "../Products/Product/Ticket";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path="/control-material" element={<ControlMaterial />}></Route>
       <Route path="/products" element={<Products />}></Route>
       <Route path="/product/view/:id?" element={<ProductPerfil />}></Route>
+      <Route path="/emit-ticket" element={<Ticke />}></Route>
       <Route path="*" element={<Page404 />}></Route>
     </Routes>
   )
