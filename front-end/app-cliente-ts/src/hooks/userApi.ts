@@ -56,6 +56,22 @@ export const useApi = () => ({
         return true
     },
 
+    findByNameEmployee: async (name: string) => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.get('/employee/' +name, {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
+
     findAllCompany: async () => {
         try {
             const storageData = localStorage.getItem('authToken');

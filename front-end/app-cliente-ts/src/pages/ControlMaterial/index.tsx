@@ -7,7 +7,7 @@ const ControlMaterial = () => {
             <div className="container">
 
                 <div>
-                    <h1>Controle Material</h1>
+                    <h1 className="mt-4">Controle Material</h1>
                 </div>
             </div>
             

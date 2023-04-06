@@ -9,7 +9,7 @@ const Dashboard = () => {
         <div>
             <NavBar />
             <main className="container">
-                <h1>Dashboard</h1>
+                <h1 className="mt-4">Dashboard</h1>
                 <p>Olá {auth.user?.username}, Tudo Bem ?</p>
             </main>
 

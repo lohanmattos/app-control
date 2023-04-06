@@ -5,7 +5,7 @@ const Users = () => {
         <div >
            <NavBar/>
             <div className="container">
-                <h1>Usuários</h1>
+                <h1 className="mt-4">Usuários</h1>
             </div>
         </div>
     )
