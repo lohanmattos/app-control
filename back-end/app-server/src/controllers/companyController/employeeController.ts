@@ -70,6 +70,25 @@ class employeeController {
         res.status(StatusCodes.OK).json(getAllEmployee);
     }
 
+    async findByNameEmployee(req: Request, res: Response) {
+
+        const name = req.params.name
+
+        const user = {
+            username: name
+        }
+
+        //busca todos os usuarios no banco
+        const findByNameEmployee = await employeeService.find(
+            {where: {user: user }, relations:{
+                section: true,
+            }
+        })
+
+        //retorna os usuarios encontrados
+        res.status(StatusCodes.OK).json(findByNameEmployee);
+    }
+
 }
 
 export default employeeController
