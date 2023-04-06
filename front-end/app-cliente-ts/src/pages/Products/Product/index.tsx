@@ -31,16 +31,12 @@ const ProductPerfil = () => {
         findProduct()
     }, [])
 
-    const emitTicket = () => {
-        navigate('/emit-ticket')
-    }
-
     return (
         <div>
             <NavBar />
             <div className="container">
                 <div className="container-detalhe">
-                    <h1 className="mt-4 border-bottom" >Detalhes do Produto</h1>
+                    <h1 className="mt-4 border-bottom">Detalhes do Produto</h1>
 
                     <div className="row mb-3">
                         <div className="col-sm-3 themed-grid-col">Código Produto: <b>{data[0]?.code}</b></div>
@@ -56,11 +52,7 @@ const ProductPerfil = () => {
                     </div>
                 </div>
 
-                <div className="row mb-3">
-                    <div className="col-sm-4 themed-grid-col"><button type="button" onClick={() => emitTicket()} className="btn btn-primary">Gerar Etiqueta</button></div>
-                    <div className="col-sm-4 themed-grid-col"></div>
-                    <div className="col-sm-4 themed-grid-col"></div>
-                </div>
+               
 
                 <h4 className="mt-4" >Lista de Conferencias</h4>
 
@@ -87,8 +79,6 @@ const ProductPerfil = () => {
                         }
                     </tbody>
                 </table>
-
-                        <TicketProduct/>
             </div>
         </div>
     )

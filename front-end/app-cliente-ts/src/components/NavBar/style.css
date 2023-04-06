@@ -7,7 +7,9 @@ nav a {
 }
 
 nav img{
-    width: 40px;
+    margin-top: 6px;
+    width: 35px;
+    height: 35px;
 }
 
 .white{

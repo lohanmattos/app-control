@@ -7,11 +7,11 @@ import { Employee } from "../../types/Employee"
 const UserPerfil = () => {
     const auth = useContext(AuthContext);
 
-    const [user, setUser] = useState<Employee | undefined>()
+    const [user, setUser] = useState<Employee>()
 
     useEffect(() => {
         setUser(auth.user?.employee)
-    }, [auth.user])
+    }, [])
 
     return (
         <div>

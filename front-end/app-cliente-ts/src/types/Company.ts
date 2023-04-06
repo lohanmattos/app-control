@@ -34,7 +34,6 @@ export type CheckProduct ={
     user: User
 }
 
-
 export type Product = {
     id: number,
     code: string,

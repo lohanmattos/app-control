@@ -5,9 +5,9 @@ import dom from "./img/DTCEA-SI-DOM.png"
 
 const TicketProduct = () => {
     return (
-        <div className="row .ms-1" >
+        <div className="row" >
                 <div className="container">
-                    <div className="card w-25">
+                    <div className="card auto">
                         <div className="card-body">
                             <div className="etiqueta-box">
                                 <div>
