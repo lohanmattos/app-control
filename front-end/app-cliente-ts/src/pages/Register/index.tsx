@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 import AuthContext from "../../contexts/Auth/AuthContext";
+import "./style.css"
 
 const Register = () => {
 
@@ -35,7 +36,7 @@ const Register = () => {
         <div>
             <NavBar />
             <main className="container">
-                <h1>Sistema de Controle de Bens-Patrimoniais</h1>
+                <h1>Novo Usuário</h1>
 
                 {errors.user && <span style={{ color: 'red' }}>Entre com o usuário.</span>}
                 <br />
@@ -61,8 +62,31 @@ const Register = () => {
                         <input type="submit" />
                     </fieldset>
                 </form>
+
+                <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="col-6">
+                        <label htmlFor="inputName" className="form-label">Nome:</label>
+                        <input {...register("user", { required: true })} type="text" className="form-control" id="inputName" placeholder="1234 Main St" />
+                    </div>
+                    <div className="col-md-3">
+                        <label htmlFor="inputPassword" className="form-label">Password</label>
+                        <input {...register("password", { required: true })} type="password" className="form-control" id="inputPassword" />
+                    </div>
+                    <div className="col-md-3">
+                        <label htmlFor="inputPassword2" className="form-label">Password</label>
+                        <input {...register("passwordRepite", { required: true })} type="password" className="form-control" id="inputPassword2" />
+                    </div>
+                   
+                    <div className="col-md-12">
+                        <label htmlFor="inputEmail" className="form-label">Email</label>
+                        <input {...register("email", { required: true })} type="email" className="form-control" id="inputEmail" />
+                    </div>
+                    <div className="col-12">
+                        <button type="submit" className="btn btn-primary">Sign in</button>
+                    </div>
+                </form>
             </main>
-        </div>
+        </div >
     );
 
 };
