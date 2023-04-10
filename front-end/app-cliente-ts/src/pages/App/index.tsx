@@ -13,6 +13,7 @@ import ControlMaterial from "../ControlMaterial";
 import Products from "../Products";
 import ProductPerfil from "../ProductPerfil";
 import Ticke from "../Ticket";
+import CreateCompany from "../CreateCompany";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/user-perfil" element={<UserPerfil />}></Route>
       <Route path="/users" element={<Users />}></Route>
       <Route path="/company" element={<PageCompany />}></Route>
+      <Route path="/create-company" element={<CreateCompany />}></Route>
       <Route path="/control-material" element={<ControlMaterial />}></Route>
       <Route path="/products" element={<Products />}></Route>
       <Route path="/product/view/:id?" element={<ProductPerfil />}></Route>
