@@ -69,7 +69,11 @@ class userController {
         //busca todos os usuarios no banco
         const findAllUsers = await userService.find({
             relations: {
-                employee: true,
+                employee: {
+                    section: {
+                        department: true
+                    }
+                },
             }
         })
 
