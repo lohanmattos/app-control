@@ -8,7 +8,7 @@ interface ICompany{
     name: string,
     decription: string,
     acronym: string,
-    departament: Department
+    departament?: Department
     company_createdAt: Date
 }
 
