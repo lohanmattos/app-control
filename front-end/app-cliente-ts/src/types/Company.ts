@@ -4,7 +4,8 @@ export type Section = {
     id: number;
     name: string,
     acronym:string
-    section_createdAt: Date
+    section_createdAt: Date,
+    department: Departments
 }
 
 export type Departments={

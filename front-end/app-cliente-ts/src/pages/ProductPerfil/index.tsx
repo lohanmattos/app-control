@@ -1,11 +1,10 @@
-import { Link, Route, Routes, useParams, useNavigate } from "react-router-dom";
-import { useApi } from "../../../hooks/userApi";
+import { useParams, useNavigate } from "react-router-dom";
+import { useApi } from "../../hooks/userApi";
 import { useEffect, useState } from "react";
-import { CheckProduct, Product } from "../../../types/Company";
-import NavBar from "../../../components/NavBar";
-import { formatLocalDate } from ".././../../utils/format";
+import { CheckProduct, Product } from "../../types/Company";
+import NavBar from "../../components/NavBar";
+import { formatLocalDate } from "../../utils/format";
 import "./style.css"
-import TicketProduct from "../../../components/TicketProduct";
 
 const ProductPerfil = () => {
 

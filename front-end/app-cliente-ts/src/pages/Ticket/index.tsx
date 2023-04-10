@@ -1,4 +1,4 @@
-import TicketProduct from "../../../../components/TicketProduct"
+import TicketProduct from "../../components/TicketProduct"
 
 const Ticke = () => {
     return(

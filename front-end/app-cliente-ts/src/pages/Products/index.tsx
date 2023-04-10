@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import NavBar from "../../components/NavBar"
 import { useApi } from "../../hooks/userApi"
 import { Product } from "../../types/Company";
@@ -15,7 +15,6 @@ const Products = () => {
         const findProductAll = async () => {
             const resut = await api.findAllProduct();
             setData(resut);
-            console.log(resut)
         }
         findProductAll()
     }, [])
@@ -25,14 +24,13 @@ const Products = () => {
             <NavBar />
             <div className="container">
                 <h1 className="mt-4">Produtos</h1>
-
                 <table className='table table-hover' >
                     <thead>
-                        <tr key={10}>
-                            <th key={1}>Code</th>
-                            <th key={2}>Descrição</th>
-                            <th key={2}>Seção</th>
-                            <th key={3} colSpan = {2} >Opções</th>
+                        <tr>
+                            <th>Code</th>
+                            <th>Descrição</th>
+                            <th>Seção</th>
+                            <th colSpan = {2} >Opções</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,9 +47,7 @@ const Products = () => {
                         })}
                     </tbody>
                 </table>
-
             </div>
-
         </div>
     )
 }

@@ -11,8 +11,8 @@ import Users from "../Users";
 import PageCompany from "../Company";
 import ControlMaterial from "../ControlMaterial";
 import Products from "../Products";
-import ProductPerfil from "../Products/Product";
-import Ticke from "../Products/Product/Ticket";
+import ProductPerfil from "../ProductPerfil";
+import Ticke from "../Ticket";
 
 function App() {
   return (
