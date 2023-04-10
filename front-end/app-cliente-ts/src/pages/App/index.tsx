@@ -11,7 +11,6 @@ import Users from "../Users";
 import PageCompany from "../Company";
 import ControlMaterial from "../ControlMaterial";
 import Products from "../Products";
-import Product from "../Products/Product";
 import ProductPerfil from "../Products/Product";
 import Ticke from "../Products/Product/Ticket";
 

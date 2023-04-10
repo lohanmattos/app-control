@@ -35,7 +35,7 @@ const ProductPerfil = () => {
         <div>
             <NavBar />
             <div className="container">
-                <div className="container-detalhe">
+                <div className="container-detalhe" style={{background: "rgb(255, 255, 255)"}}>
                     <h1 className="mt-4 border-bottom">Detalhes do Produto</h1>
 
                     <div className="row mb-3">
@@ -56,7 +56,7 @@ const ProductPerfil = () => {
 
                 <h4 className="mt-4" >Lista de Conferencias</h4>
 
-                <table className='table table-hover' >
+                <table className='table table-hover' style={{background: "rgb(255, 255, 255)"}} >
                     <thead>
                         <tr>
                             <th >Data da Conferência</th>
