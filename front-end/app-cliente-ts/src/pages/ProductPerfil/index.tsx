@@ -34,7 +34,7 @@ const ProductPerfil = () => {
         <div>
             <NavBar />
             <div className="container">
-                <div className="container-detalhe" style={{background: "rgb(255, 255, 255)"}}>
+                <div className="container-detalhe">
                     <h1 className="mt-4 border-bottom">Detalhes do Produto</h1>
 
                     <div className="row mb-3">
@@ -51,33 +51,36 @@ const ProductPerfil = () => {
                     </div>
                 </div>
 
-               
+                <div className="container-detalhe">
+                    <h4 className="mt-4" >Lista de Conferencias</h4>
 
-                <h4 className="mt-4" >Lista de Conferencias</h4>
+                    <table className='table table-hover'>
+                        <thead>
+                            <tr>
+                                <th >Data da Conferência</th>
+                                <th >Localização(Secão)</th>
+                                <th >Usuário</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                listCheck.map((item) => {
+                                    return (
+                                        <tr>
+                                            <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy")}</td>
+                                            <td>{item.section.name}</td>
+                                            <td>{item.user.employee?.first_name}</td>
 
-                <table className='table table-hover' style={{background: "rgb(255, 255, 255)"}} >
-                    <thead>
-                        <tr>
-                            <th >Data da Conferência</th>
-                            <th >Localização(Secão)</th>
-                            <th >Usuário</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            listCheck.map((item) => {
-                                return (
-                                    <tr>
-                                        <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy")}</td>
-                                        <td>{item.section.name}</td>
-                                        <td>{item.user.employee?.first_name}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+
+
             </div>
         </div>
     )
