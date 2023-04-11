@@ -70,7 +70,7 @@ const ProductPerfil = () => {
                                     <tr>
                                         <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy")}</td>
                                         <td>{item.section.name}</td>
-                                        <td>{item.user.employee.first_name}</td>
+                                        <td>{item.user.employee?.first_name}</td>
 
                                     </tr>
                                 )

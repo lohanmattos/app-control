@@ -131,6 +131,21 @@ export const useApi = () => ({
         }
     },
 
+    findByIdCompany: async (id:number) => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.get('/company/'+String(id), {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
     createCompany: async (name: string, decription:string, acronym: string) => {
         try {
             const storageData = localStorage.getItem('authToken');
