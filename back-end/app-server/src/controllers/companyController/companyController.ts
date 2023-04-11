@@ -8,7 +8,7 @@ interface ICompany{
     name: string,
     decription: string,
     acronym: string,
-    departament: Department
+    departament?: Department
     company_createdAt: Date
 }
 
@@ -44,6 +44,21 @@ class companyController{
                 department: true
             }
         })
+
+        res.status(StatusCodes.OK).json(findAllCompany);
+    }
+
+    async findByIdCompany(req: Request, res: Response){
+
+        const id = req.params.id;
+        
+        const findAllCompany = await companyService.find({where:{id: Number(id)}, relations:{
+            department:{
+                section: {
+                    employee: true
+                }
+            }
+        }})
 
         res.status(StatusCodes.OK).json(findAllCompany);
     }

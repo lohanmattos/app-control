@@ -8,11 +8,13 @@ import Register from "../Register";
 import './App.css'
 import UserPerfil from "../UserPerfil";
 import Users from "../Users";
-import PageCompany from "../Company";
+import PageCompany from "../Companies";
 import ControlMaterial from "../ControlMaterial";
 import Products from "../Products";
-import ProductPerfil from "../Products/Product";
-import Ticke from "../Products/Product/Ticket";
+import ProductPerfil from "../ProductPerfil";
+import Ticke from "../Ticket";
+import CreateCompany from "../CreateCompany";
+import CompanyPerfil from "../CompanyPerfil";
 
 function App() {
   return (
@@ -23,10 +25,17 @@ function App() {
       <Route path="/register" element={<Register />}></Route >
       <Route path="/user-perfil" element={<UserPerfil />}></Route>
       <Route path="/users" element={<Users />}></Route>
+
       <Route path="/company" element={<PageCompany />}></Route>
+      <Route path="/create-company" element={<CreateCompany />}></Route>
+      <Route path="/company/view/:id?" element={<CompanyPerfil />}></Route>
+
       <Route path="/control-material" element={<ControlMaterial />}></Route>
+
       <Route path="/products" element={<Products />}></Route>
       <Route path="/product/view/:id?" element={<ProductPerfil />}></Route>
+
+
       <Route path="/emit-ticket" element={<Ticke />}></Route>
       <Route path="*" element={<Page404 />}></Route>
     </Routes>

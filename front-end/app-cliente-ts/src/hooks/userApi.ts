@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Buffer } from 'buffer';
+import { User } from "../types/User";
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_REACT_APP_API
@@ -25,9 +26,16 @@ export const useApi = () => ({
     },
 
     signup: async (username: string, password: string, email: string) => {
+        const storageData = localStorage.getItem('authToken');
         const response = await api.post('/users', {
             username, password, email
-        })
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + storageData                                    
+            }
+        }
+        )
         return response.data;
     },
 
@@ -56,6 +64,41 @@ export const useApi = () => ({
         return true
     },
 
+    //Users
+    findAllUsers: async () => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.get('/users', {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+            
+        } catch (error) {
+            return error
+        }
+    },
+
+
+    //Employees
+
+    createEmployee: async (first_name: string, last_name: string, cpf: string, user:User) => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.post('/employee', {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
     findByNameEmployee: async (name: string) => {
         try {
             const storageData = localStorage.getItem('authToken');
@@ -70,8 +113,9 @@ export const useApi = () => ({
             return error
         }
     },
+    
 
-
+    //Company
     findAllCompany: async () => {
         try {
             const storageData = localStorage.getItem('authToken');
@@ -87,6 +131,39 @@ export const useApi = () => ({
         }
     },
 
+    findByIdCompany: async (id:number) => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.get('/company/'+String(id), {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            },)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
+    createCompany: async (name: string, decription:string, acronym: string) => {
+        try {
+            const storageData = localStorage.getItem('authToken');
+            const response = await api.post('/company',{
+                name, decription, acronym
+            }, {
+
+                headers: {
+                    Authorization: "Bearer " + storageData                                    
+                }
+            })
+            return response
+        } catch (error) {
+            return error
+        }
+    },
+
+    //Products
     findAllProduct: async () => {
         try {
             const storageData = localStorage.getItem('authToken');

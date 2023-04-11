@@ -4,13 +4,15 @@ export type Section = {
     id: number;
     name: string,
     acronym:string
-    section_createdAt: Date
+    section_createdAt: Date,
+    department: Departments
 }
 
 export type Departments={
     name: string,
     acronym: string,
-    departament_createdAt: Date
+    departament_createdAt: Date,
+    section: Section[]
 }
 
 export type Company = {
@@ -18,7 +20,7 @@ export type Company = {
     name: string,
     decription: string,
     acronym: string,
-    departments: Departments[]
+    department: Departments[]
 }
 
 export type Category = {
