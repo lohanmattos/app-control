@@ -5,7 +5,6 @@ import { CheckProduct, Product } from "../../../types/Company";
 import NavBar from "../../../components/NavBar";
 import { formatLocalDate } from ".././../../utils/format";
 import "./style.css"
-import TicketProduct from "../../../components/TicketProduct";
 
 const ProductPerfil = () => {
 
@@ -35,8 +34,10 @@ const ProductPerfil = () => {
         <div>
             <NavBar />
             <div className="container">
-                <div className="container-detalhe" style={{background: "rgb(255, 255, 255)"}}>
-                    <h1 className="mt-4 border-bottom">Detalhes do Produto</h1>
+                <div className="container-detalhe">
+                    <h1 className="mt-4">Detalhes do Produto</h1>
+                </div>
+                <div className="container-detalhe">
 
                     <div className="row mb-3">
                         <div className="col-sm-3 themed-grid-col">Código Produto: <b>{data[0]?.code}</b></div>
@@ -52,33 +53,34 @@ const ProductPerfil = () => {
                     </div>
                 </div>
 
-               
 
-                <h4 className="mt-4" >Lista de Conferencias</h4>
+                <div className="container-detalhe">
+                    <h4 className="mt-4" >Lista de Conferencias</h4>
 
-                <table className='table table-hover' style={{background: "rgb(255, 255, 255)"}} >
-                    <thead>
-                        <tr>
-                            <th >Data da Conferência</th>
-                            <th >Localização(Secão)</th>
-                            <th >Usuário</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            listCheck.map((item) => {
-                                return (
-                                    <tr>
-                                        <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy")}</td>
-                                        <td>{item.section.name}</td>
-                                        <td>{item.user.employee.first_name}</td>
+                    <table className='table table-hover'>
+                        <thead>
+                            <tr>
+                                <th >Data da Conferência</th>
+                                <th >Localização(Secão)</th>
+                                <th >Usuário</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                listCheck.map((item) => {
+                                    return (
+                                        <tr>
+                                            <td>{formatLocalDate(String(item.checkProduct_createdAt), "dd/MM/yyyy")}</td>
+                                            <td>{item.section.name}</td>
+                                            <td>{item.user.employee.first_name}</td>
 
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )

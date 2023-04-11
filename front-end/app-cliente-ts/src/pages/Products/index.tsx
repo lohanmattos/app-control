@@ -24,31 +24,35 @@ const Products = () => {
         <div>
             <NavBar />
             <div className="container">
-                <h1 className="mt-4">Produtos</h1>
+                <div className="container-detalhe">
+                    <h1 className="mt-4">Produtos</h1>
+                    <table className='table table-hover' >
+                        <thead>
+                            <tr key={10}>
+                                <th key={1}>Code</th>
+                                <th key={2}>Descrição</th>
+                                <th key={2}>Seção</th>
+                                <th key={3} colSpan={2} >Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((items, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{items.code}</td>
+                                        <td>{items.description}</td>
+                                        <td>{items.section.name}</td>
+                                        <td><Link to={"/product/edit/" + items.id}>Editar</Link></td>
+                                        <td><Link to={"/product/view/" + items.id}>Visualizar</Link></td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
 
-                <table className='table table-hover' >
-                    <thead>
-                        <tr key={10}>
-                            <th key={1}>Code</th>
-                            <th key={2}>Descrição</th>
-                            <th key={2}>Seção</th>
-                            <th key={3} colSpan = {2} >Opções</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((items, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{items.code}</td>
-                                    <td>{items.description}</td>
-                                    <td>{items.section.name}</td>
-                                    <td><Link to={"/product/edit/"+items.id}>Editar</Link></td>
-                                    <td><Link to={"/product/view/"+items.id}>Visualizar</Link></td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+
+
 
             </div>
 
