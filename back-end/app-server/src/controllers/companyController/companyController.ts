@@ -48,6 +48,21 @@ class companyController{
         res.status(StatusCodes.OK).json(findAllCompany);
     }
 
+    async findByIdCompany(req: Request, res: Response){
+
+        const id = req.params.id;
+        
+        const findAllCompany = await companyService.find({where:{id: Number(id)}, relations:{
+            department:{
+                section: {
+                    employee: true
+                }
+            }
+        }})
+
+        res.status(StatusCodes.OK).json(findAllCompany);
+    }
+
 }
 
 export default companyController
